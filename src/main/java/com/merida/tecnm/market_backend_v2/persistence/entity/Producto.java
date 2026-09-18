@@ -2,7 +2,6 @@ package com.merida.tecnm.market_backend_v2.persistence.entity;
 
 import jakarta.persistence.*;
 
-import java.time.LocalDateTime;
 @Entity
 @Table(name = "productos")
 public class Producto {

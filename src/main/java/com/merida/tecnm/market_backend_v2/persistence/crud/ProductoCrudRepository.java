@@ -19,6 +19,6 @@ public interface ProductoCrudRepository extends CrudRepository<Producto, Integer
 
     //Cantidad stock
 
-    Optional<List<Producto>> findByCantidadStockLessThenAndEstado(int cantidadStock, boolean estado);
+    Optional<List<Producto>> findByCantidadStockLessThanAndEstado(int cantidadStock, boolean estado);
 
 }

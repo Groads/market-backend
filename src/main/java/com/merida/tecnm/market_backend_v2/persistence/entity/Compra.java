@@ -29,7 +29,7 @@ public class Compra {
     private Cliente cliente;
 
     //Relacion con compra producto
-    @OneToMany (mappedBy = "compra", cascade = CascadeType.ALL)
+    @OneToMany (mappedBy = "compra", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<CompraProducto> productos;
 
     public Integer getIdCompra() {

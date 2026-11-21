@@ -27,6 +27,7 @@ List<Product> toProducts(List<Producto> productos);
 
 @InheritInverseConfiguration
 @Mapping(target = "codigoBarras", ignore = true)
+@Mapping(target = "compraProductos", ignore = true)
 Producto toProducto(Product product);
 
 }

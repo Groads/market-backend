@@ -14,8 +14,9 @@ public class CompraProducto {
     private Double total;
     private Boolean estado;
 
-    @ManyToOne
-    @JoinColumn (name = "id_compra",insertable = false, updatable = false)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @MapsId("idCompra")
+    @JoinColumn(name = "id_compra", nullable = false)
     private Compra compra;
 
     @ManyToOne

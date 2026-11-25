@@ -3,6 +3,7 @@ package com.merida.tecnm.market_backend_v2.domain.service;
 import com.merida.tecnm.market_backend_v2.domain.Client;
 import com.merida.tecnm.market_backend_v2.domain.repository.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,6 +14,8 @@ public class ClientService {
 
  @Autowired
  private ClientRepository clientRepository;
+ @Autowired
+ private PasswordEncoder passwordEncoder;
 
  public List<Client> getAll() {
   return clientRepository.getAll();
@@ -23,12 +26,20 @@ public class ClientService {
  }
 
  public Client save(Client client) {
+  if (client.getPassword() != null && !client.getPassword().isBlank()) {
+   client.setPassword(passwordEncoder.encode(client.getPassword()));
+  }
   return clientRepository.save(client);
  }
 
  public Optional<Client> update(String clientId, Client client) {
   return getClient(clientId).map(existingClient -> {
    client.setClientId(clientId);
+   if (client.getPassword() != null && !client.getPassword().isBlank()) {
+    client.setPassword(passwordEncoder.encode(client.getPassword()));
+   } else {
+    client.setPassword(existingClient.getPassword());
+   }
    return clientRepository.save(client);
   });
  }

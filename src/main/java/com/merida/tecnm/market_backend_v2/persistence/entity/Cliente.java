@@ -14,12 +14,21 @@ public class Cliente {
     private String apellidos;
     private Long celular;
     private String direccion;
+    private String contrasena;
 
     @OneToMany(mappedBy = "cliente")
     private List<Compra> compras;
 
     @Column(name = "correo_electronico")
     private String correoElectronico;
+
+    public String getContrasena() {
+        return contrasena;
+    }
+
+    public void setContrasena(String contrasena) {
+        this.contrasena = contrasena;
+    }
 
     public String getId() {
         return id;
